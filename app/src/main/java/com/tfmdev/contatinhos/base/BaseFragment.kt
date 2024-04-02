@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 
 open class BaseFragment<T : ViewBinding>(val bindingInflater: (layoutInflate: LayoutInflater) -> T) :
@@ -19,8 +21,18 @@ open class BaseFragment<T : ViewBinding>(val bindingInflater: (layoutInflate: La
         savedInstanceState: Bundle?
     ): View {
         initObservers()
+        handleBackButton()
         _binding = bindingInflater.invoke(inflater)
         return binding.root
+    }
+
+    open fun handleBackButton() = activity?.let { activity ->
+        val back = activity.onBackPressedDispatcher
+            back.addCallback(this.viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().popBackStack()
+                }
+            })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +40,7 @@ open class BaseFragment<T : ViewBinding>(val bindingInflater: (layoutInflate: La
         setupUI()
     }
 
-    open fun setupUI () {
+    open fun setupUI() {
 
     }
 
