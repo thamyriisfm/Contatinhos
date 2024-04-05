@@ -5,26 +5,10 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.HomeItemBinding
 
-abstract class HomeViewHolder(itemView: View) : ViewHolder(itemView) {
+class HomeViewHolder(itemView: View) : ViewHolder(itemView) {
+    private val binding = HomeItemBinding.bind(itemView)
 
-    val bind: HomeItemBinding = HomeItemBinding.bind(itemView)
-
-    open fun bind(item: Contact) {
-
-    }
-
-}
-
-class HeaderViewHolder(itemView: View) : HomeViewHolder(itemView) {
-
-    override fun bind(item: Contact) {
-
-    }
-}
-
-class ItemViewHolder(itemView: View) : HomeViewHolder(itemView) {
-
-    override fun bind(item: Contact) {
-
+    fun bind(item: Contact) {
+        binding.tvName.text = item.name
     }
 }

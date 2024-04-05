@@ -28,11 +28,12 @@ open class BaseFragment<T : ViewBinding>(val bindingInflater: (layoutInflate: La
 
     open fun handleBackButton() = activity?.let { activity ->
         val back = activity.onBackPressedDispatcher
-            back.addCallback(this.viewLifecycleOwner, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    findNavController().popBackStack()
-                }
-            })
+
+        back.addCallback(this.viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

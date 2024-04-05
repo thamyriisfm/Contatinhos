@@ -12,7 +12,8 @@ class HomeAdapter() :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        TODO("Not yet implemented")
+        val item = HomeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return HomeViewHolder(item.root)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
@@ -22,11 +23,13 @@ class HomeAdapter() :
     object HomeDiffUtill : DiffUtil.ItemCallback<Contact>() {
 
         override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-            TODO("Not yet implemented")
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-            TODO("Not yet implemented")
+            return oldItem.name == newItem.name
+                    && oldItem.phoneNumber == newItem.phoneNumber
+                    && oldItem.isActive == newItem.isActive
         }
     }
 }
