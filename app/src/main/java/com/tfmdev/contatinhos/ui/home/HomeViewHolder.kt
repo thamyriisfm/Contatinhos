@@ -10,5 +10,6 @@ class HomeViewHolder(itemView: View) : ViewHolder(itemView) {
 
     fun bind(item: Contact) {
         binding.tvName.text = item.name
+        binding.smStatus.isChecked = item.isActive
     }
 }

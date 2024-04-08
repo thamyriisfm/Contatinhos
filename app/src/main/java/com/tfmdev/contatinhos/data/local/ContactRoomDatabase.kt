@@ -39,20 +39,12 @@ abstract class ContactRoomDatabase : RoomDatabase() {
             // Not needed if you only populate on creation.
             contactDao.deleteAll()
 
-            var contact =
-                Contact(name = "Ana", phoneNumber = 125566465456, isActive = true, id = "jdd")
-            contactDao.insert(contact)
-            contact =
-                Contact(name = "Ana", phoneNumber = 125566465456, isActive = true, id = "j55dd")
-            contactDao.insert(contact)
         }
 
         private class ContactDatabaseCallback(private val scope: CoroutineScope) : Callback() {
 
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-                // If you want to keep the data through app restarts,
-                // comment out the following line.
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
                         populateDatabase(database.contactDao())
