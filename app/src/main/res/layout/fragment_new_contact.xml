@@ -12,26 +12,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name"
-        app:layout_constraintBottom_toBottomOf="@id/ti_name"
+        app:layout_constraintBottom_toBottomOf="@id/et_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ti_name" />
+        app:layout_constraintTop_toTopOf="@id/et_name" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ti_name"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_name"
         android:layout_width="0dp"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@id/tv_label_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_label_name"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_label_phone_number"
@@ -43,31 +37,15 @@
         app:layout_constraintTop_toBottomOf="@id/et_phone_number"
         app:layout_constraintTop_toTopOf="@id/et_phone_number" />
 
-<!--    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ti_phone_number"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_label_phone_number"
-        app:layout_constraintTop_toBottomOf="@id/ti_name">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.tfmdev.contatinhos.ui.components.EditedTextMasked
         android:id="@+id/et_phone_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_label_phone_number"
-        app:layout_constraintTop_toBottomOf="@id/ti_name"
-        />
+        app:layout_constraintTop_toBottomOf="@id/et_name" />
 
     <RadioGroup
         android:id="@+id/rg_status"
