@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.tfmdev.contatinhos.ContatinhosApplication
 import com.tfmdev.contatinhos.R
 import com.tfmdev.contatinhos.base.BaseFragment
+import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -23,8 +24,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeAdapter = HomeAdapter()
+        homeAdapter = HomeAdapter { contact ->
+            onClick(contact)
+        }
         return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    private fun onClick(contact: Contact) {
+        contact.apply { this.isActive = !this.isActive }
+        homeViewModel.updateStatus(contact)
     }
 
     override fun setupUI() {

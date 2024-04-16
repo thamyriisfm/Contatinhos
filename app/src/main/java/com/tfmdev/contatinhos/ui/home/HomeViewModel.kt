@@ -16,6 +16,10 @@ class HomeViewModel(private val repository: ContactRepository) : ViewModel() {
     fun insert(contact: Contact) = viewModelScope.launch {
         repository.insert(contact)
     }
+
+    fun updateStatus(contact: Contact) = viewModelScope.launch {
+        repository.updateStatus(contact)
+    }
 }
 
 class ContactViewModelFactory(private val repository: ContactRepository) :

@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.HomeItemBinding
 
-class HomeAdapter() :
+class HomeAdapter(val listener : (contact: Contact) -> Unit) :
     ListAdapter<Contact, HomeViewHolder>(HomeDiffUtill) {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val item = HomeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomeViewHolder(item.root)
+        return HomeViewHolder(item.root){_, pos ->
+            listener(getItem(pos))
+        }
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
