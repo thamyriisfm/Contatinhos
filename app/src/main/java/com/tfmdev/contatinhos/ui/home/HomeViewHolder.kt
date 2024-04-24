@@ -5,16 +5,23 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.HomeItemBinding
 
-class HomeViewHolder(itemView: View, val listener: ((view: View, position: Int) -> Unit)?) :
+class HomeViewHolder(
+    itemView: View,
+    private val listener: ((position: Int, isChecked: Boolean) -> Unit)?
+) :
     ViewHolder(itemView) {
-        
+
     private val binding = HomeItemBinding.bind(itemView)
 
     fun bind(item: Contact) {
-        binding.tvName.text = item.name
-        binding.smStatus.isChecked = item.isActive
-        binding.smStatus.setOnClickListener {
-            listener?.invoke(itemView, adapterPosition)
+        binding.fieldSelected.apply {
+            setSwitchChangedListener { _, isChecked ->
+                listener?.invoke(adapterPosition, isChecked)
+            }
+            setName(item.name)
+            setPhoneNumber(item.phoneNumber)
+            setStatus(item.isActive)
         }
+
     }
 }

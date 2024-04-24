@@ -43,8 +43,4 @@ class NewContactFragment :
                     && binding.etPhoneNumber.text?.isNotEmpty() == true
     }
 
-    private fun checkPhoneNumber(): Boolean {
-        return true
-    }
-
 }

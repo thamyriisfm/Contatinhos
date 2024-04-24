@@ -31,7 +31,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun onClick(contact: Contact) {
-        contact.apply { this.isActive = !this.isActive }
         homeViewModel.updateStatus(contact)
     }
 
