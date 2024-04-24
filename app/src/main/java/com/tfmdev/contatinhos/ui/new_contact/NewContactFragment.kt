@@ -20,6 +20,7 @@ class NewContactFragment :
     override fun setupUI() {
         binding.mbSave.setOnClickListener { saveContact() }
         binding.etName.addTextChangedListener { verifyFields() }
+        binding.etPhoneNumber.setListener { verifyFields() }
         binding.rgStatus.setOnCheckedChangeListener { _, _ ->
             verifyFields()
         }
@@ -40,7 +41,7 @@ class NewContactFragment :
     private fun verifyFields() {
         binding.mbSave.isEnabled =
             binding.etName.text?.isNotEmpty() == true
-                    && binding.etPhoneNumber.text?.isNotEmpty() == true
+                    && binding.etPhoneNumber.getIsValid()
     }
 
 }
