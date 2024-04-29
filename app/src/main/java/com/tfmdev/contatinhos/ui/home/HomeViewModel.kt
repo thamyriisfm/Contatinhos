@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.tfmdev.contatinhos.data.ContactRepository
+import com.tfmdev.contatinhos.data.local.ContactRepository
 import com.tfmdev.contatinhos.data.local.Contact
 import kotlinx.coroutines.launch
 

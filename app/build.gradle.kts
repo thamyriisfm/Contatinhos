@@ -58,6 +58,9 @@ dependencies {
     implementation(libs.room.ktx)
     annotationProcessor(libs.room.compiler)
     kapt(libs.room.compiler)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.http.logging)
 }
 
 kapt {

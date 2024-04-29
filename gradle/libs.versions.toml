@@ -15,6 +15,8 @@ navigationUiKtx = "2.7.7"
 hiltVersion = "2.51.1"
 roomVersion = "2.6.1"
 kspVersion = "1.8.21-1.0.11"
+retrofitVersion = "2.11.0"
+okHttpVersion = "4.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +35,9 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
+http-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

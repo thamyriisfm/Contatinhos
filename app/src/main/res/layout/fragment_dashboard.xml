@@ -6,17 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_title_ideias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/label_subject_ideias"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bv_dog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttom_dog"
+        app:layout_constraintStart_toStartOf="@id/tv_title_ideias"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_ideias" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bv_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttom_cat"
+        app:layout_constraintStart_toStartOf="@id/tv_title_ideias"
+        app:layout_constraintTop_toBottomOf="@id/bv_dog" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bv_advice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttom_advice"
+        app:layout_constraintStart_toStartOf="@id/tv_title_ideias"
+        app:layout_constraintTop_toBottomOf="@id/bv_cat" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bv_joke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttom_joke"
+        app:layout_constraintStart_toStartOf="@id/tv_title_ideias"
+        app:layout_constraintTop_toBottomOf="@id/bv_advice" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bv_astrology"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttom_astrology"
+        app:layout_constraintStart_toStartOf="@id/tv_title_ideias"
+        app:layout_constraintTop_toBottomOf="@id/bv_joke" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

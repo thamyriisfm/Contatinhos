@@ -1,4 +1,4 @@
-package com.tfmdev.contatinhos.data
+package com.tfmdev.contatinhos.data.local
 
 import androidx.annotation.WorkerThread
 import com.tfmdev.contatinhos.data.local.Contact
