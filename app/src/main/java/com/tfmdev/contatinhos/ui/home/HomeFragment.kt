@@ -4,39 +4,49 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.tfmdev.contatinhos.ContatinhosApplication
+import com.tfmdev.contatinhos.R
+import com.tfmdev.contatinhos.base.BaseFragment
+import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val homeViewModel: HomeViewModel by activityViewModels {
+        ContactViewModelFactory((this.activity?.application as ContatinhosApplication).repository)
+    }
+    private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        homeAdapter = HomeAdapter { contact ->
+            onClick(contact)
         }
-        return root
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun onClick(contact: Contact) {
+        homeViewModel.updateStatus(contact)
+    }
+
+    override fun setupUI() {
+        binding.fabAddContact.setOnClickListener { addContact() }
+        binding.rvContactList.adapter = homeAdapter
+        homeAdapter.submitList(emptyList())
+    }
+
+    private fun addContact() {
+        findNavController().navigate(R.id.action_navigation_home_to_newContactFragment)
+    }
+
+    override fun initObservers() {
+        homeViewModel.contacts.observe(viewLifecycleOwner) {
+            homeAdapter.submitList(homeViewModel.contacts.value)
+        }
     }
 }
