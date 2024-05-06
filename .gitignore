@@ -1,5 +1,6 @@
 .DS_Store
 .idea/shelf
+.idea/
 caches/
 /confluence/target
 /dependencies/repo
