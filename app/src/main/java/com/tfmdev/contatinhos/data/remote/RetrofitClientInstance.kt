@@ -1,6 +1,5 @@
 package com.tfmdev.contatinhos.data.remote
 
-import android.app.Application
 import com.tfmdev.contatinhos.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -21,26 +20,19 @@ class RetrofitClientInstance {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient() =
-        if (BuildConfig.DEBUG) {
-            val loggingInterceptor = HttpLoggingInterceptor()
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-            OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build()
-        } else {
-            OkHttpClient
-                .Builder()
-                .build()
-        }
+    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+    } else {
+        OkHttpClient.Builder().build()
+    }
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, baseURl: String): Retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(baseURl)
-        .client(okHttpClient)
-        .build()
+    fun provideRetrofit(okHttpClient: OkHttpClient, baseURl: String): Retrofit =
+        Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(baseURl)
+            .client(okHttpClient).build()
 
     @Provides
     @Singleton
@@ -48,6 +40,6 @@ class RetrofitClientInstance {
 
     @Provides
     @Singleton
-    fun provideApiHelper(adviceSlipService: AdviceSlipService): AdviceSlipAPI = adviceSlipService
+    fun provideApiHelper(adviceSlipHelper: AdviceSlipService): AdviceSlipHelper = adviceSlipHelper
 
 }

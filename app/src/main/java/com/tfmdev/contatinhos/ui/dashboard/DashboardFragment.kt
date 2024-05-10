@@ -1,15 +1,17 @@
 package com.tfmdev.contatinhos.ui.dashboard
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tfmdev.contatinhos.R
 import com.tfmdev.contatinhos.base.BaseFragment
 import com.tfmdev.contatinhos.databinding.FragmentDashboardBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DashboardFragment :
     BaseFragment<FragmentDashboardBinding>(FragmentDashboardBinding::inflate) {
 
-    private val utilsViewModel: DashboardViewModel by viewModels()
+    private val utilsViewModel: DashboardViewModel by activityViewModels()
 
     override fun setupUI() {
         binding.bvDog.setOnClickListener { dogClicked() }
