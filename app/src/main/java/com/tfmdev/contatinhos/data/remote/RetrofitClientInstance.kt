@@ -1,33 +1,53 @@
 package com.tfmdev.contatinhos.data.remote
 
+import android.app.Application
+import com.tfmdev.contatinhos.BuildConfig
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
+@Module
+@InstallIn(SingletonComponent::class)
 class RetrofitClientInstance {
 
-    private var retrofit: Retrofit? = null
+    @Provides
+    fun providesBaseUrl() = "https://api.adviceslip.com"
 
-    private fun getRetrofitInstance(baseUrl: String): Retrofit? {
-        if (retrofit == null) {
-            val loggingInterceptor =
-                HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
-            val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
-            retrofit = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
+    @Singleton
+    @Provides
+    fun provideOkHttpClient() =
+        if (BuildConfig.DEBUG) {
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
+        } else {
+            OkHttpClient
+                .Builder()
                 .build()
         }
-        return retrofit
-    }
 
-    fun getAdviceSlipInstance(): Retrofit? {
-        return getRetrofitInstance(ADVICE_URL)
-    }
+    @Singleton
+    @Provides
+    fun provideRetrofit(okHttpClient: OkHttpClient, baseURl: String): Retrofit = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(baseURl)
+        .client(okHttpClient)
+        .build()
 
-    companion object {
-        const val ADVICE_URL = "https://api.adviceslip.com"
-    }
+    @Provides
+    @Singleton
+    fun provideApiService(retrofit: Retrofit) = retrofit.create(AdviceSlipAPI::class.java)
+
+    @Provides
+    @Singleton
+    fun provideApiHelper(adviceSlipService: AdviceSlipService): AdviceSlipAPI = adviceSlipService
+
 }

@@ -5,20 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tfmdev.contatinhos.data.remote.AdviceSlipAPI
+import com.tfmdev.contatinhos.data.remote.AdviceSlipRepository
 import com.tfmdev.contatinhos.data.remote.RetrofitClientInstance
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DashboardViewModel : ViewModel() {
+class DashboardViewModel
+@Inject constructor(private val adviceSlipRepository: AdviceSlipRepository) : ViewModel() {
 
     private val _advice = MutableLiveData<String>()
     val advice: LiveData<String> = _advice
 
-    fun getAdvice() {
-        val retrofitClientInstance =
-            RetrofitClientInstance().getAdviceSlipInstance()?.create(AdviceSlipAPI::class.java)
-        viewModelScope.launch {
-            val result = retrofitClientInstance?.getAdvice()
-            _advice.postValue(result?.body()?.slip?.advice)
+    init {
+        getAdvice()
+    }
+
+    fun getAdvice() = viewModelScope.launch {
+        adviceSlipRepository.getAdvice().body()?.slip?.advice?.let { result ->
+            _advice.postValue(result)
         }
     }
 }
