@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ContactDao {
 
-    @Query("SELECT * FROM contact_table ORDER BY isActive DESC, name ASC")
+    @Query("SELECT * FROM contact_table ORDER BY isActive DESC, name COLLATE NOCASE ASC")
     fun getAlphabetizedWords(): Flow<List<Contact>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
