@@ -1,9 +1,17 @@
-package com.tfmdev.contatinhos.data.remote
+package com.tfmdev.contatinhos.di
 
+import android.content.Context
+import androidx.room.Room
 import com.tfmdev.contatinhos.BuildConfig
+import com.tfmdev.contatinhos.data.local.ContactDao
+import com.tfmdev.contatinhos.data.local.ContactRoomDatabase
+import com.tfmdev.contatinhos.data.remote.AdviceSlipAPI
+import com.tfmdev.contatinhos.data.remote.AdviceSlipHelper
+import com.tfmdev.contatinhos.data.remote.AdviceSlipService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,7 +21,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RetrofitClientInstance {
+class AppModule {
 
     @Provides
     fun providesBaseUrl() = "https://api.adviceslip.com"
@@ -26,6 +34,19 @@ class RetrofitClientInstance {
         OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
     } else {
         OkHttpClient.Builder().build()
+    }
+
+    @Provides
+    fun provideLogDao(database: ContactRoomDatabase): ContactDao {
+        return database.contactDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): ContactRoomDatabase {
+        return Room.databaseBuilder(
+            appContext, ContactRoomDatabase::class.java, "contact_database"
+        ).build()
     }
 
     @Singleton

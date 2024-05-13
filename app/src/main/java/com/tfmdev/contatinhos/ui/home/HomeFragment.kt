@@ -6,23 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.tfmdev.contatinhos.ContatinhosApplication
 import com.tfmdev.contatinhos.R
 import com.tfmdev.contatinhos.base.BaseFragment
 import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
-    private val homeViewModel: HomeViewModel by activityViewModels {
-        ContactViewModelFactory((this.activity?.application as ContatinhosApplication).repository)
-    }
+    private val homeViewModel: HomeViewModel by activityViewModels()
     private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         homeAdapter = HomeAdapter { contact ->
             onClick(contact)
