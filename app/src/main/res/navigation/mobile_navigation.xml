@@ -9,15 +9,15 @@
         android:id="@+id/navigation_home"
         android:name="com.tfmdev.contatinhos.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_newContactFragment"
             app:destination="@id/newContactFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@id/navigation_home"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_home" />
     </fragment>
 
     <fragment
@@ -35,5 +35,11 @@
         android:id="@+id/newContactFragment"
         android:name="com.tfmdev.contatinhos.ui.new_contact.NewContactFragment"
         android:label="fragment_new_contact"
-        tools:layout="@layout/fragment_new_contact" />
+        tools:layout="@layout/fragment_new_contact">
+        <argument
+            android:name="contact"
+            android:defaultValue="@null"
+            app:argType="com.tfmdev.contatinhos.data.local.Contact"
+            app:nullable="true" />
+    </fragment>
 </navigation>
