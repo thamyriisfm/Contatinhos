@@ -24,12 +24,16 @@ class FieldSelected(context: Context, attrs: AttributeSet) : LinearLayout(contex
         binding.smStatus.setOnCheckedChangeListener(listener)
     }
 
+    fun onEditClicked(listener: () -> Unit) {
+        binding.fabEdit.setOnClickListener { listener.invoke() }
+    }
+
     fun setName(name: String) {
         binding.tvName.text = name
     }
 
-    fun setPhoneNumber(phoneNumber: Long) {
-        binding.tvPhoneNumber.text = phoneNumber.toString()
+    fun setPhoneNumber(phoneNumber: String) {
+        binding.tvPhoneNumber.text = phoneNumber
     }
 
     fun setStatus(status: Boolean) {

@@ -7,15 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.HomeItemBinding
 
-class HomeAdapter(val listener: (contact: Contact) -> Unit) :
+class HomeAdapter(private val listener: AdapterListener) :
     ListAdapter<Contact, HomeViewHolder>(HomeDiffUtill) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val item = HomeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomeViewHolder(item.root) { pos, isChecked ->
-            getItem(pos).isActive = isChecked
-            listener(getItem(pos))
-        }
+        return HomeViewHolder(item.root, listener)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
@@ -29,9 +26,15 @@ class HomeAdapter(val listener: (contact: Contact) -> Unit) :
         }
 
         override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-            return oldItem.name == newItem.name
-                    && oldItem.phoneNumber == newItem.phoneNumber
-                    && oldItem.isActive == newItem.isActive
+            return oldItem.name == newItem.name && oldItem.phoneNumber == newItem.phoneNumber && oldItem.isActive == newItem.isActive
         }
     }
+}
+
+interface AdapterListener {
+    fun onEdit(contact: Contact)
+    fun onDelete(contact: Contact)
+    fun onSwitchChanged(contact: Contact)
+    fun onCall(contact: Contact)
+    fun onSMS(contact: Contact)
 }

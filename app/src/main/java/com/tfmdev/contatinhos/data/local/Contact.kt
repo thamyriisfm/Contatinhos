@@ -11,6 +11,6 @@ import kotlinx.parcelize.Parcelize
 data class Contact(
     @ColumnInfo(name = "contact") @PrimaryKey(autoGenerate = false) val id: String,
     var name: String,
-    var phoneNumber: Long,
+    var phoneNumber: String,
     var isActive: Boolean
 ) : Parcelable

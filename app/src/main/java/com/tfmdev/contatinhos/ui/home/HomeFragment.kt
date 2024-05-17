@@ -18,17 +18,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val homeViewModel: HomeViewModel by activityViewModels()
     private lateinit var homeAdapter: HomeAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        homeAdapter = HomeAdapter { contact ->
-            onClick(contact)
+    private val adapterListener = object : AdapterListener {
+        override fun onEdit(contact: Contact) {
+            onEditContact(contact)
         }
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
-    private fun onClick(contact: Contact) {
-        homeViewModel.updateStatus(contact)
+        override fun onDelete(contact: Contact) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onSwitchChanged(contact: Contact) {
+            this@HomeFragment.onSwitchChanged(contact)
+        }
+
+        override fun onCall(contact: Contact) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onSMS(contact: Contact) {
+            TODO("Not yet implemented")
+        }
+
     }
 
     override fun setupUI() {
@@ -37,13 +47,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeAdapter.submitList(emptyList())
     }
 
-    private fun addContact() {
-        findNavController().navigate(R.id.action_navigation_home_to_newContactFragment)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        homeAdapter = HomeAdapter(adapterListener)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun initObservers() {
         homeViewModel.contacts.observe(viewLifecycleOwner) {
             homeAdapter.submitList(homeViewModel.contacts.value)
         }
+    }
+
+    private fun onSwitchChanged(contact: Contact) {
+        homeViewModel.updateStatus(contact)
+    }
+
+    private fun onEditContact(contact: Contact) {
+        val attribute = HomeFragmentDirections.actionNavigationHomeToNewContactFragment(contact)
+        findNavController().navigate(attribute)
+    }
+
+    private fun addContact() {
+        findNavController().navigate(R.id.action_navigation_home_to_newContactFragment)
     }
 }
