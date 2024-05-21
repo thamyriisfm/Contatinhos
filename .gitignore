@@ -24,6 +24,7 @@ workspace.xml
 /js/js.translator/testData/out-pir/
 .gradle/
 build/
+daemon/
 !**/src/**/build
 !**/test/**/build
 *.iml
