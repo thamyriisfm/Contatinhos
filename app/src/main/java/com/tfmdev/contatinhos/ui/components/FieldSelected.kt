@@ -36,6 +36,10 @@ class FieldSelected(context: Context, attrs: AttributeSet) : LinearLayout(contex
         binding.fabCall.setOnClickListener { listener.invoke() }
     }
 
+    fun onSmsClicked(listener: () -> Unit) {
+        binding.fabSms.setOnClickListener { listener.invoke() }
+    }
+
     fun setName(name: String) {
         binding.tvName.text = name
     }

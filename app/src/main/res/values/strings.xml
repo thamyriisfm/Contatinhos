@@ -26,4 +26,6 @@
     <string name="message_confirm">Confirma que pretende deletar esse contato?</string>
     <string name="yes">Sim</string>
     <string name="not">Não</string>
+    <string name="message_whatsapp_unavailable">O WhatsApp desse contato não está disponível.</string>
+    <string name="url_whatsapp">https://api.whatsapp.com/send?phone=</string>
 </resources>

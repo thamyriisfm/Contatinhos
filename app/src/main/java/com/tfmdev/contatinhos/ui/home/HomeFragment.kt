@@ -1,11 +1,13 @@
 package com.tfmdev.contatinhos.ui.home
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -39,15 +41,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         override fun onSMS(contact: Contact) {
-            TODO("Not yet implemented")
+            onSmsClicked(contact)
         }
 
-    }
-
-    private fun onCallClicked(contact: Contact) {
-        val intent = Intent(Intent.ACTION_DIAL)
-        intent.data = Uri.parse("tel:" + contact.phoneNumber)
-        startActivity(intent)
     }
 
     override fun setupUI() {
@@ -90,6 +86,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     homeViewModel.deleteContact(contact)
                     dialog.dismiss()
                 }.setNegativeButton(getString(R.string.not), null).create().show()
+        }
+    }
+
+    private fun onCallClicked(contact: Contact) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:" + contact.phoneNumber)
+        startActivity(intent)
+    }
+
+    private fun onSmsClicked(contact: Contact) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setData(Uri.parse(getString(R.string.url_whatsapp) + contact.phoneNumber))
+            startActivity(intent)
+        } catch (e: PackageManager.NameNotFoundException) {
+            Toast.makeText(this.context, getString(R.string.message_whatsapp_unavailable), Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
         }
     }
 }
