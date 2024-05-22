@@ -1,5 +1,7 @@
 package com.tfmdev.contatinhos.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,13 +35,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         override fun onCall(contact: Contact) {
-            TODO("Not yet implemented")
+            onCallClicked(contact)
         }
 
         override fun onSMS(contact: Contact) {
             TODO("Not yet implemented")
         }
 
+    }
+
+    private fun onCallClicked(contact: Contact) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:" + contact.phoneNumber)
+        startActivity(intent)
     }
 
     override fun setupUI() {
