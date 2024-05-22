@@ -18,6 +18,7 @@ class HomeViewHolder(
                 listener.onSwitchChanged(item)
             }
             onEditClicked { listener.onEdit(item) }
+            onDeleteClicked { listener.onDelete(item) }
             setName(item.name)
             setPhoneNumber(item.phoneNumber)
             setStatus(item.isActive)

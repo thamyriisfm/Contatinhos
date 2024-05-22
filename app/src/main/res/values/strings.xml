@@ -22,4 +22,8 @@
     <string name="buttom_astrology">Astrologia</string>
     <string name="an_advice_for_you">Um conselho para você</string>
     <string name="ok">OK</string>
+    <string name="title_confirm">Tem certeza?</string>
+    <string name="message_confirm">Confirma que pretende deletar esse contato?</string>
+    <string name="yes">Sim</string>
+    <string name="not">Não</string>
 </resources>

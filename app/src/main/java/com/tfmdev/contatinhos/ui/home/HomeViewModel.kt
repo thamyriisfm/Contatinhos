@@ -22,4 +22,8 @@ class HomeViewModel @Inject constructor(private val repository: ContactRepositor
     fun updateStatus(contact: Contact) = viewModelScope.launch {
         repository.updateStatus(contact)
     }
+
+    fun deleteContact(contact: Contact) = viewModelScope.launch {
+        repository.deleteContact(contact)
+    }
 }

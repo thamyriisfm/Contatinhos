@@ -28,6 +28,10 @@ class FieldSelected(context: Context, attrs: AttributeSet) : LinearLayout(contex
         binding.fabEdit.setOnClickListener { listener.invoke() }
     }
 
+    fun onDeleteClicked(listener: () -> Unit) {
+        binding.fabDelete.setOnClickListener { listener.invoke() }
+    }
+
     fun setName(name: String) {
         binding.tvName.text = name
     }

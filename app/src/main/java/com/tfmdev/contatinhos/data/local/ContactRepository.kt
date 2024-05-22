@@ -16,4 +16,8 @@ class ContactRepository @Inject constructor(private val contactDao: ContactDao) 
     suspend fun updateStatus(contact: Contact) {
         contactDao.updateStatusById(contact)
     }
+
+    suspend fun deleteContact(contact: Contact) {
+        contactDao.deleteContact(contact)
+    }
 }

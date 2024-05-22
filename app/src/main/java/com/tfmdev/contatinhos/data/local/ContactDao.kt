@@ -1,6 +1,7 @@
 package com.tfmdev.contatinhos.data.local
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -18,6 +19,9 @@ interface ContactDao {
 
     @Update
     suspend fun updateStatusById(contact: Contact)
+
+    @Delete
+    suspend fun deleteContact(contact: Contact)
 
     @Query("DELETE FROM contact_table")
     suspend fun deleteAll()
