@@ -9,7 +9,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "contact_table")
 data class Contact(
-    @ColumnInfo(name = "contact") @PrimaryKey(autoGenerate = false) val id: String,
+    @ColumnInfo(name = "contact")
+    @PrimaryKey(autoGenerate = true)
+    val id: Int? = null,
     var name: String,
     var phoneNumber: String,
     var isActive: Boolean

@@ -29,15 +29,12 @@ class NewContactFragment :
 
     private fun onEditMode(contact: Contact) {
         binding.etName.setText(contact.name)
-        binding.etPhoneNumber.setText(contact.phoneNumber.toString())
+        binding.etPhoneNumber.setText(contact.phoneNumber)
         if (contact.isActive) binding.rbActive.isChecked else binding.rbInactive.isChecked
     }
 
     private fun saveContact() {
         val contact = Contact(
-            id = args.contact?.id ?: "id${
-                binding.etName.text.toString() + binding.etName.length().toString()
-            }",
             name = binding.etName.text.toString(),
             phoneNumber = binding.etPhoneNumber.text.toString(),
             isActive = binding.rbActive.isChecked
