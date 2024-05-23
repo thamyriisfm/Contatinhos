@@ -11,14 +11,6 @@ import com.tfmdev.contatinhos.databinding.FieldSelectedViewBinding
 class FieldSelected(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     private val binding = FieldSelectedViewBinding.inflate(LayoutInflater.from(context), this, true)
-    private var isExpandable = false
-
-    init {
-        setOnClickListener {
-            isExpandable = !isExpandable
-            binding.viewExpandable.isVisible = isExpandable
-        }
-    }
 
     fun setSwitchChangedListener(listener: CompoundButton.OnCheckedChangeListener) {
         binding.smStatus.setOnCheckedChangeListener(listener)
@@ -38,6 +30,11 @@ class FieldSelected(context: Context, attrs: AttributeSet) : LinearLayout(contex
 
     fun onSmsClicked(listener: () -> Unit) {
         binding.fabSms.setOnClickListener { listener.invoke() }
+    }
+
+    fun onExpanded(isExpanded: Boolean) {
+        binding.viewExpandable.isVisible = isExpanded
+        binding.smStatus.isVisible = !isExpanded
     }
 
     fun setName(name: String) {

@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import com.tfmdev.contatinhos.data.local.Contact
 import com.tfmdev.contatinhos.databinding.HomeItemBinding
 
-class HomeAdapter(private val listener: AdapterListener) :
-    ListAdapter<Contact, HomeViewHolder>(HomeDiffUtill) {
+class HomeAdapter(private val listener: AdapterListener)
+    : ListAdapter<Contact, HomeViewHolder>(HomeDiffUtill) {
+
+    private var expandedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val item = HomeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,6 +19,16 @@ class HomeAdapter(private val listener: AdapterListener) :
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(getItem(position))
+        val isExpanded = position == expandedPosition
+        holder.binding.fieldSelected.onExpanded(isExpanded)
+
+
+        holder.binding.fieldSelected.setOnClickListener {
+            val previousExpandedPosition = expandedPosition
+            expandedPosition = if (isExpanded) -1 else position
+            notifyItemChanged(previousExpandedPosition)
+            notifyItemChanged(expandedPosition)
+        }
     }
 
     object HomeDiffUtill : DiffUtil.ItemCallback<Contact>() {

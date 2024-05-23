@@ -9,7 +9,7 @@ class HomeViewHolder(
     itemView: View, private val listener: AdapterListener
 ) : ViewHolder(itemView) {
 
-    private val binding = HomeItemBinding.bind(itemView)
+    val binding = HomeItemBinding.bind(itemView)
 
     fun bind(item: Contact) {
         binding.fieldSelected.apply {
