@@ -10,7 +10,7 @@ import com.tfmdev.contatinhos.databinding.HomeItemBinding
 class HomeAdapter(private val listener: AdapterListener)
     : ListAdapter<Contact, HomeViewHolder>(HomeDiffUtill) {
 
-    private var expandedPosition = -1
+    private var expandedPositionId: Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val item = HomeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,17 +18,23 @@ class HomeAdapter(private val listener: AdapterListener)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(getItem(position))
-        val isExpanded = position == expandedPosition
-        holder.binding.fieldSelected.onExpanded(isExpanded)
+        val item = getItem(position)
+        holder.bind(item)
+
+        val isExpandedId = item.id == expandedPositionId
+        holder.binding.fieldSelected.onExpanded(isExpandedId)
 
 
         holder.binding.fieldSelected.setOnClickListener {
-            val previousExpandedPosition = expandedPosition
-            expandedPosition = if (isExpanded) -1 else position
-            notifyItemChanged(previousExpandedPosition)
-            notifyItemChanged(expandedPosition)
+            val previousExpandedPositionId = expandedPositionId
+            expandedPositionId = if (isExpandedId) null else item.id
+            notifyItemChanged(getPositionForItemId(previousExpandedPositionId))
+            notifyItemChanged(position)
         }
+    }
+
+    private fun getPositionForItemId(itemId: Int?): Int {
+        return currentList.indexOfFirst { it.id == itemId }
     }
 
     object HomeDiffUtill : DiffUtil.ItemCallback<Contact>() {
@@ -38,7 +44,7 @@ class HomeAdapter(private val listener: AdapterListener)
         }
 
         override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-            return oldItem.name == newItem.name && oldItem.phoneNumber == newItem.phoneNumber && oldItem.isActive == newItem.isActive
+            return oldItem == newItem
         }
     }
 }
