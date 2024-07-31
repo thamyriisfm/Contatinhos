@@ -1,4 +1,4 @@
-package com.tfmdev.contatinhos.data.local
+package com.tfmdev.contatinhos.data.local.event
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -7,12 +7,11 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "contact_table")
-data class Contact(
-    @ColumnInfo(name = "contact")
+@Entity(tableName = "event_table")
+data class Event(
+    @ColumnInfo(name = "event")
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    var name: String,
-    var phoneNumber: String,
-    var isActive: Boolean
+    var description: String,
+    var date: String,
 ) : Parcelable

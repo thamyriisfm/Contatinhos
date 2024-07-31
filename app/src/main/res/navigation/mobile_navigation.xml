@@ -39,7 +39,7 @@
         <argument
             android:name="contact"
             android:defaultValue="@null"
-            app:argType="com.tfmdev.contatinhos.data.local.Contact"
+            app:argType="com.tfmdev.contatinhos.data.local.contact.Contact"
             app:nullable="true" />
     </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.tfmdev.contatinhos.data.local
+package com.tfmdev.contatinhos.data.local.contact
 
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
@@ -10,7 +10,7 @@ class ContactRepository @Inject constructor(private val contactDao: ContactDao) 
 
     @WorkerThread
     suspend fun insert(contact: Contact) {
-        contactDao.insert(contact)
+        contactDao.insertContact(contact)
     }
 
     suspend fun updateStatus(contact: Contact) {

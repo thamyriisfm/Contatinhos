@@ -1,4 +1,4 @@
-package com.tfmdev.contatinhos.data.local
+package com.tfmdev.contatinhos.data.local.contact
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.tfmdev.contatinhos.data.local.Contact
+import com.tfmdev.contatinhos.data.local.contact.Contact
 import com.tfmdev.contatinhos.databinding.HomeItemBinding
 
 class HomeAdapter(private val listener: AdapterListener)

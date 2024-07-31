@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.tfmdev.contatinhos.data.local.Contact
-import com.tfmdev.contatinhos.data.local.ContactRepository
+import com.tfmdev.contatinhos.data.local.contact.Contact
+import com.tfmdev.contatinhos.data.local.contact.ContactRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

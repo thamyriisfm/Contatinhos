@@ -28,4 +28,6 @@
     <string name="not">Não</string>
     <string name="message_whatsapp_unavailable">O WhatsApp desse contato não está disponível.</string>
     <string name="url_whatsapp">https://api.whatsapp.com/send?phone=</string>
+    <string name="set_the_date">Selecione o dia</string>
+    <string name="add_event">Adicione um evento</string>
 </resources>

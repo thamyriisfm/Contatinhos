@@ -1,4 +1,4 @@
-package com.tfmdev.contatinhos.data.local
+package com.tfmdev.contatinhos.data.local.contact
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -15,7 +15,7 @@ interface ContactDao {
     fun getAlphabetizedWords(): Flow<List<Contact>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(contact: Contact)
+    suspend fun insertContact(contact: Contact)
 
     @Update
     suspend fun updateStatusById(contact: Contact)

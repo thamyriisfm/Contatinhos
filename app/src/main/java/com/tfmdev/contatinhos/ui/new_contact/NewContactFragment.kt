@@ -5,7 +5,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tfmdev.contatinhos.base.BaseFragment
-import com.tfmdev.contatinhos.data.local.Contact
+import com.tfmdev.contatinhos.data.local.contact.Contact
 import com.tfmdev.contatinhos.databinding.FragmentNewContactBinding
 import com.tfmdev.contatinhos.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -3,8 +3,8 @@ package com.tfmdev.contatinhos.di
 import android.content.Context
 import androidx.room.Room
 import com.tfmdev.contatinhos.BuildConfig
-import com.tfmdev.contatinhos.data.local.ContactDao
-import com.tfmdev.contatinhos.data.local.ContactRoomDatabase
+import com.tfmdev.contatinhos.data.local.contact.ContactDao
+import com.tfmdev.contatinhos.data.local.contact.ContactRoomDatabase
 import com.tfmdev.contatinhos.data.remote.AdviceSlipAPI
 import com.tfmdev.contatinhos.data.remote.AdviceSlipHelper
 import com.tfmdev.contatinhos.data.remote.AdviceSlipService

@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tfmdev.contatinhos.R
 import com.tfmdev.contatinhos.base.BaseFragment
-import com.tfmdev.contatinhos.data.local.Contact
+import com.tfmdev.contatinhos.data.local.contact.Contact
 import com.tfmdev.contatinhos.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -82,7 +82,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         context?.let {
             MaterialAlertDialogBuilder(it).setTitle(getString(R.string.title_confirm))
                 .setMessage(getString(R.string.message_confirm))
-                .setPositiveButton(getString(R.string.yes)) { dialog, wich ->
+                .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                     homeViewModel.deleteContact(contact)
                     dialog.dismiss()
                 }.setNegativeButton(getString(R.string.not), null).create().show()
