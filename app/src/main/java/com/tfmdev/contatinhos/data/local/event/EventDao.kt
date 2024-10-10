@@ -6,9 +6,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EventDao {
+
+    @Query("SELECT * FROM event_table ORDER BY date")
+    fun getEvents(): Flow<List<Event>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertEvent(event: Event)

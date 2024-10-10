@@ -1,4 +1,4 @@
-package com.tfmdev.contatinhos.ui.dashboard
+package com.tfmdev.contatinhos.ui.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

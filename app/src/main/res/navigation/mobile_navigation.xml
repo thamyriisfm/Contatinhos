@@ -22,13 +22,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.tfmdev.contatinhos.ui.dashboard.DashboardFragment"
+        android:name="com.tfmdev.contatinhos.ui.utils.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.tfmdev.contatinhos.ui.notifications.NotificationsFragment"
+        android:name="com.tfmdev.contatinhos.ui.events.EventsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment

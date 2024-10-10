@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".ui.events.EventsFragment">
 
     <CalendarView
         android:id="@+id/cld_view"
@@ -22,12 +22,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_label_date_event"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 android:text="@string/set_the_date"
                 android:textAlignment="center"
                 android:textSize="16sp"
@@ -41,6 +43,7 @@
                 android:autofillHints="reminder"
                 android:hint="@string/add_event"
                 android:inputType="textLongMessage"
+                android:paddingHorizontal="16dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_label_date_event" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

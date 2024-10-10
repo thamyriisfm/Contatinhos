@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: ContactRepository) : ViewModel() {
+class HomeViewModel
+@Inject constructor(private val repository: ContactRepository) : ViewModel() {
 
     val contacts: LiveData<List<Contact>> = repository.allContacts.asLiveData()
 

@@ -1,4 +1,4 @@
-package com.tfmdev.contatinhos.ui.dashboard
+package com.tfmdev.contatinhos.ui.utils
 
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.tfmdev.contatinhos.BuildConfig
 import com.tfmdev.contatinhos.data.local.contact.ContactDao
 import com.tfmdev.contatinhos.data.local.contact.ContactRoomDatabase
+import com.tfmdev.contatinhos.data.local.event.EventDao
+import com.tfmdev.contatinhos.data.local.event.EventRoomDatabase
 import com.tfmdev.contatinhos.data.remote.AdviceSlipAPI
 import com.tfmdev.contatinhos.data.remote.AdviceSlipHelper
 import com.tfmdev.contatinhos.data.remote.AdviceSlipService
@@ -46,6 +48,19 @@ class AppModule {
     fun provideAppDatabase(@ApplicationContext appContext: Context): ContactRoomDatabase {
         return Room.databaseBuilder(
             appContext, ContactRoomDatabase::class.java, "contact_database"
+        ).build()
+    }
+
+    @Provides
+    fun provideLogDaoEvent(database: EventRoomDatabase): EventDao {
+        return database.eventDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabaseEvent(@ApplicationContext appContext: Context): EventRoomDatabase {
+        return Room.databaseBuilder(
+            appContext, EventRoomDatabase::class.java, "event_database"
         ).build()
     }
 
