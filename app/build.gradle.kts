@@ -11,32 +11,40 @@ android {
     namespace = "com.tfmdev.contatinhos"
     compileSdk = 34
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("/home/thamyris/AndroidStudioProjects/contatinhos/Certificado/contatinhos.jks")
+            storePassword = "#Contatinhos1"
+            keyAlias = "contatinhos"
+            keyPassword = "#Contatinhos1"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.tfmdev.contatinhos"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             isDebuggable = false
-            isShrinkResources = true
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            )
-        }
-        debug {
-            isDebuggable = true
             isShrinkResources = false
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
+        }
+        debug {
+            isDebuggable = true
+            isShrinkResources = false
+            isMinifyEnabled = false
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-DEBUG"
         }
     }
     compileOptions {
