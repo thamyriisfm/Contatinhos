@@ -11,8 +11,7 @@ import com.tfmdev.contatinhos.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewContactFragment :
-    BaseFragment<FragmentNewContactBinding>(FragmentNewContactBinding::inflate) {
+class NewContactFragment : BaseFragment<FragmentNewContactBinding>(FragmentNewContactBinding::inflate) {
 
     private val homeViewModel: HomeViewModel by activityViewModels()
     private val args: NewContactFragmentArgs by navArgs()
@@ -30,11 +29,13 @@ class NewContactFragment :
     private fun onEditMode(contact: Contact) {
         binding.etName.setText(contact.name)
         binding.etPhoneNumber.setText(contact.phoneNumber)
-        if (contact.isActive) binding.rbActive.isChecked else binding.rbInactive.isChecked
+        binding.rbActive.isChecked = contact.isActive
+        binding.rbInactive.isChecked = !contact.isActive
     }
 
     private fun saveContact() {
         val contact = Contact(
+            id = args.contact?.id,
             name = binding.etName.text.toString(),
             phoneNumber = binding.etPhoneNumber.text.toString(),
             isActive = binding.rbActive.isChecked
@@ -48,8 +49,7 @@ class NewContactFragment :
     }
 
     private fun verifyFields() {
-        binding.mbSave.isEnabled =
-            binding.etName.text?.isNotEmpty() == true && binding.etPhoneNumber.getIsValid()
+        binding.mbSave.isEnabled = binding.etName.text?.isNotEmpty() == true && binding.etPhoneNumber.getIsValid()
     }
 
 }
