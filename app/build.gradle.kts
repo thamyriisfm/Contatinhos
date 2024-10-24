@@ -14,7 +14,7 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("/home/thamyris/AndroidStudioProjects/contatinhos/Certificado/contatinhos.jks")
+            storeFile = file("../Certificado/contatinhos.jks")
             storePassword = "#Contatinhos1"
             keyAlias = "contatinhos"
             keyPassword = "#Contatinhos1"
@@ -33,12 +33,12 @@ android {
     buildTypes {
         release {
             isDebuggable = false
-            isShrinkResources = false
-            isMinifyEnabled = false
+            isShrinkResources = true
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
         }
         debug {
             isDebuggable = true
@@ -46,6 +46,7 @@ android {
             isMinifyEnabled = false
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
+            resValue("string", "app_name", "@string/app_name_debug")
         }
     }
     compileOptions {
